@@ -10,8 +10,6 @@ const FormProducto = () => {
     const [description,setDescription] = useState("")
 
     const onSubmitManejador = e => {
-
-        e.preventDefault()
         axios.post('http://localhost:8000/api/products/new',{
             title,
             price,

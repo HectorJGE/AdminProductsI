@@ -1,12 +1,19 @@
 
 import './App.css';
-import FormProducto from './components/FormProducto';
+import React from "react";
+import { BrowserRouter, Route } from 'react-router-dom';
+import Main from './views/Main';
+import Detail from './views/Detail';
 
 function App() {
+
   return (
-    <div>
-      <FormProducto/>
-    </div>
+    <>
+      <BrowserRouter>
+        <Route exact path="/" render={()=><Main/>}/>
+        <Route exact path="/:_id" render={ routeProps => <Detail {...routeProps} />} />
+      </BrowserRouter>
+    </>
   );
 }
 
