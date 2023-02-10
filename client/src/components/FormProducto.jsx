@@ -3,21 +3,21 @@ import axios from 'axios'
 import { useState } from "react";
 
 
-const FormProducto = () => {
+const FormProducto = (props) => {
     
     const [title,setTitle] = useState("")
     const [price,setPrice] = useState()
     const [description,setDescription] = useState("")
 
     const onSubmitManejador = e => {
-
         e.preventDefault()
         axios.post('http://localhost:8000/api/products/new',{
             title,
             price,
             description
-        }).then(response => console.log(response))
-            .catch(err => console.log(err))
+        }).then(response => props.onNewProduct(response.data.producto))
+            .catch(err => console.log(err));
+        
     }
 
     return (
