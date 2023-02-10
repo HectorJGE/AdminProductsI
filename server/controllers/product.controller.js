@@ -14,6 +14,18 @@ module.exports.findAllProduct = (req, res) => {
 
 module.exports.findOneProduct = (req, res) => {
   Product.findOne({_id:req.params._id})
-    .then(producto => res.json({producto}))
+    .then(producto => res.json(producto))
+    .catch(err => res.json({ message: "Something went wrong", error: err }));
+};
+
+module.exports.updateProduct = (req, res) => {
+  Product.findOneAndUpdate({_id:req.params._id}, req.body, {new:true})
+    .then(producto => console.log({producto}))
+    .catch(err => res.json({ message: "Something went wrong", error: err }));
+};
+
+module.exports.deleteProduct = (req, res) => {
+  Product.deleteOne({_id:req.params._id})
+    .then(producto => console.log({producto}))
     .catch(err => res.json({ message: "Something went wrong", error: err }));
 };

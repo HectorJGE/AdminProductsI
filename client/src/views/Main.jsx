@@ -18,11 +18,20 @@ function Main() {
         .catch(err => console.log(err))
     }, [])
 
+    const actualizar = (objeto) => {
+        let aux=[...productos]
+        aux.push(objeto)
+        setProductos(aux)
+    }
+
+    const borrar = (id) => {
+        setProductos(productos.filter(producto => producto._id != id))
+    }
     return (
         <div>
-            <FormProducto/>
+            <FormProducto onNewProduct={actualizar}/>
             <hr/>
-            {loaded && <ProductList productos={productos}/> }
+            {loaded && <ProductList removeFromDom={borrar} productos={productos}/> }
         </div>
     );
 }
